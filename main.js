@@ -1,7 +1,9 @@
 const styleSwitcherToggle = document.querySelector('.style-switcher-toggler');
-styleSwitcherToggle.addEventListener('click', () => {
-    document.querySelector('.style-switcher').classList.toggle('open');
-});
+if (styleSwitcherToggle) {
+    styleSwitcherToggle.addEventListener('click', () => {
+        document.querySelector('.style-switcher').classList.toggle('open');
+    });
+}
 
 window.addEventListener('scroll', () => {
     if (document.querySelector('.style-switcher').classList.contains('open')) {
@@ -9,40 +11,110 @@ window.addEventListener('scroll', () => {
     }
 });
 
+// Theme Color Handler
 const alternateStyles = document.querySelectorAll('.alternate-style');
+const styleSwitcherTogglerIcon = document.querySelector('.style-switcher-toggler i');
+
 function setActiveStyle(color) {
     alternateStyles.forEach((style) => {
-        if (color === style.getAttribute('title')) {
+        if (style.getAttribute('title') === color) {
             style.removeAttribute('disabled');
         } else {
             style.setAttribute('disabled', 'true');
         }
     });
+
+    const colors = {
+        'color-1': '#FF6B6B',
+        'color-2': '#FA5B0F',
+        'color-3': '#37B182',
+        'color-4': '#1854B4',
+        'color-5': '#F021B2'
+    };
+    document.documentElement.style.setProperty('--skin-color', colors[color]);
+    localStorage.setItem('selectedColor', color);
+
+    document.querySelectorAll('.colors span').forEach((span) => {
+        if (span.getAttribute('data-color') === color) {
+            span.classList.add('active');
+        } else {
+            span.classList.remove('active');
+        }
+    });
 }
+window.addEventListener('load', () => {
+    const savedColor = localStorage.getItem('selectedColor');
+    if (savedColor) {
+        setActiveStyle(savedColor);
+    }
+});
+
+
+document.querySelectorAll('.colors span').forEach((span) => {
+    span.addEventListener('click', () => {
+        const color = span.getAttribute('data-color');
+        setActiveStyle(color);
+    });
+});
 
 /* Dark/Light Mode */
 const dayNight = document.querySelector('.day-night');
-dayNight.addEventListener('click', () => {
-    dayNight.querySelector('i').classList.toggle('fa-sun');
-    dayNight.querySelector('i').classList.toggle('fa-moon');
-    document.body.classList.toggle('dark');
-});
+if (dayNight) {
+    dayNight.addEventListener('click', () => {
+        dayNight.querySelector('i').classList.toggle('fa-sun');
+        dayNight.querySelector('i').classList.toggle('fa-moon');
+        document.body.classList.toggle('dark');
+        
+        // Save theme preference
+        if (document.body.classList.contains('dark')) {
+            localStorage.setItem('theme', 'dark');
+        } else {
+            localStorage.setItem('theme', 'light');
+        }
+    });
+}
 
+// Check for saved theme preference
 window.addEventListener('load', () => {
-    if (document.body.classList.contains('dark')) {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        document.body.classList.add('dark');
         dayNight.querySelector('i').classList.add('fa-sun');
+        dayNight.querySelector('i').classList.remove('fa-moon');
     } else {
+        document.body.classList.remove('dark');
         dayNight.querySelector('i').classList.add('fa-moon');
+        dayNight.querySelector('i').classList.remove('fa-sun');
     }
 });
 
 /* Typing Animation */
-var typed = new Typed('.typing', {
-    strings: ["", "Web Designer", "Web Developer", "Graphic Designer", "Creative Mind"],
-    typeSpeed: 100,
-    backSpeed: 60,
-    loop: true
-});
+const typedOptions = {
+    strings: [
+        "", 
+        "Web Designer", 
+        "Web Developer", 
+        "Graphic Designer", 
+        "Creative Mind"
+    ],
+    typeSpeed: 30,
+    backSpeed: 20,
+    startDelay: 10,
+    backDelay: 500,
+    loop: true,
+    loopCount: Infinity,
+    cursorChar: '|',
+    smartBackspace: true,
+    showCursor: true,
+    fadeOut: true,
+    fadeOutClass: 'typed-fade-out',
+    fadeOutDelay: 400
+};
+
+const typingElement = document.querySelector('.typing');
+if (typingElement) {
+    const typed = new Typed('.typing', typedOptions);
+}
 
 /* Changing Aside Active Link */
 const nav = document.querySelector('.nav');
@@ -99,21 +171,26 @@ function updateNav(element) {
     }
 }
 
-document.querySelector('.hire-me').addEventListener('click', function () {
-    const sectionIndex = this.getAttribute('data-section-index');
-    showSection(this);
-    updateNav(this);
-    removeBackSection();
-    addBackSection(sectionIndex);
-});
+const hireMe = document.querySelector('.hire-me');
+if (hireMe) {
+    hireMe.addEventListener('click', function () {
+        const sectionIndex = this.getAttribute('data-section-index');
+        showSection(this);
+        updateNav(this);
+        removeBackSection();
+        addBackSection(sectionIndex);
+    });
+}
 
 /* Activating Mobile Menu */
 const navTogglerBtn = document.querySelector('.nav-toggler');
 const aside = document.querySelector('.aside');
 
-navTogglerBtn.addEventListener('click', () => {
-    asideSectionTogglerBtn();
-});
+if (navTogglerBtn) {
+    navTogglerBtn.addEventListener('click', () => {
+        asideSectionTogglerBtn();
+    });
+}
 
 function asideSectionTogglerBtn() {
     aside.classList.toggle('open');
@@ -177,14 +254,3 @@ const addTiltEffect = (cards) => {
 
 addTiltEffect(serviceCards);
 addTiltEffect(portfolioCards);
-
-/* Progress Bar Animation */
-const progressBars = document.querySelectorAll('.progress-in');
-window.addEventListener('scroll', () => {
-    progressBars.forEach((bar) => {
-        const rect = bar.getBoundingClientRect();
-        if (rect.top < window.innerHeight * 0.8) {
-            bar.style.width = bar.getAttribute('style').match(/\d+/)[0] + '%';
-        }
-    });
-});
