@@ -1053,6 +1053,15 @@ h3.hello span {
     top: 0;
 }
 
+.style-switcher .style-switcher-toggler i {
+    color: var(--skin-color);
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.style-switcher .style-switcher-toggler i:hover {
+    transform: scale(1.2);
+}
+
 .style-switcher .day-night {
     top: 55px;
 }
