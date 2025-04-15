@@ -94,7 +94,7 @@ const typedOptions = {
         "", 
         "Web Designer", 
         "Web Developer", 
-        "Graphic Designer", 
+        "GDesigner", 
         "Creative Mind"
     ],
     typeSpeed: 30,
