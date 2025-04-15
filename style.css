@@ -161,6 +161,7 @@ body {
     border-radius: 40px;
     display: inline-block;
     border: none;
+    background: var(--skin-color);
     transition: all .3s ease;
 }
 
@@ -424,6 +425,27 @@ h3.hello span {
     height: 450px;
     margin: auto;
     border-radius: 4px;
+}
+
+/* تنسيق الأزرار في Home */
+.home-info .buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: flex-start;
+}
+
+.home-info .btn {
+    background: var(--skin-color);
+    color: white;
+    padding: 10px 25px;
+    font-size: 16px;
+    border-radius: 40px;
+    transition: all 0.3s ease;
+}
+
+.home-info .btn:hover {
+    transform: scale(1.05);
 }
 
 /* ABOUT */
@@ -915,101 +937,6 @@ h3.hello span {
     font-family: 'Poppins', sans-serif;
 }
 
-@media (max-width: 1199px) {
-    .aside {
-        left: -270px;
-    }
-
-    .aside.open {
-        left: 0;
-    }
-
-    .aside .nav-toggler {
-        display: flex;
-        left: 30px;
-    }
-
-    .aside .nav-toggler.open {
-        left: 300px;
-    }
-
-    .section {
-        left: 0;
-    }
-
-    .section.open {
-        left: 270px;
-    }
-
-    .section .container {
-        padding-top: 70px;
-    }
-
-    .home-img::before,
-    .home-img::after {
-        display: none;
-    }
-
-    .about .about-content .personal-info .info-item p span {
-        display: block;
-        margin-left: 0;
-    }
-}
-
-@media (max-width: 991px) {
-    .home .home-info {
-        flex: 0 0 100%;
-        max-width: 100%;
-    }
-
-    .home .home-img {
-        display: none;
-    }
-
-    .about .about-content .skills,
-    .about .about-content .personal-info,
-    .about .about-content .experience,
-    .about .about-content .education {
-        flex: 0 0 100%;
-        max-width: 100%;
-    }
-
-    .contact .contact-info-item,
-    .portfolio .portfolio-item,
-    .service .service-item {
-        flex: 0 0 50%;
-        max-width: 50%;
-    }
-}
-
-@media (max-width: 767px) {
-    .portfolio .portfolio-item,
-    .service .service-item,
-    .contact .contact-form .col-6 {
-        flex: 0 0 100%;
-        max-width: 100%;
-    }
-
-    .home .home-img img {
-        max-width: 90%;
-    }
-
-    .service .service-item .service-item-inner {
-        min-height: 250px;
-    }
-
-    .portfolio .portfolio-item-inner {
-        min-height: 250px;
-    }
-}
-
-@media (max-width: 460px) {
-    .contact .contact-info-item {
-        flex: 0 0 100%;
-        max-width: 100%;
-    }
-}
-
 /* Style Switcher */
 .style-switcher {
     position: fixed;
@@ -1110,4 +1037,142 @@ h3.hello span {
 
 .style-switcher .color-5 {
     background: #F021B2;
+}
+
+/* Media Queries */
+@media (max-width: 1199px) {
+    .aside {
+        left: -270px;
+    }
+
+    .aside.open {
+        left: 0;
+    }
+
+    .aside .nav-toggler {
+        display: flex;
+        left: 30px;
+    }
+
+    .aside .nav-toggler.open {
+        left: 300px;
+    }
+
+    .section {
+        left: 0;
+    }
+
+    .section.open {
+        left: 270px;
+    }
+
+    .section .container {
+        padding-top: 70px;
+    }
+
+    .home-img::before,
+    .home-img::after {
+        display: none;
+    }
+
+    .about .about-content .personal-info .info-item p span {
+        display: block;
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 991px) {
+    .home .home-info {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .home .home-img {
+        display: block; /* الصورة تظهر في الشاشات الصغيرة */
+        flex: 0 0 100%;
+        max-width: 100%;
+        order: -1; /* الصورة تيجي قبل النص */
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .home .home-img img {
+        height: auto;
+        max-width: 100%;
+        border-radius: 4px;
+    }
+
+    .home .row {
+        flex-direction: column;
+    }
+
+    .home-info .buttons {
+        justify-content: center;
+    }
+
+    .home-info .btn {
+        padding: 10px 25px;
+        font-size: 14px;
+    }
+
+    .about .about-content .skills,
+    .about .about-content .personal-info,
+    .about .about-content .experience,
+    .about .about-content .education {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .contact .contact-info-item,
+    .portfolio .portfolio-item,
+    .service .service-item {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+}
+
+@media (max-width: 767px) {
+    .home .home-img img {
+        max-width: 80%;
+        margin: 0 auto;
+    }
+
+    .home-info .buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .home-info .btn {
+        display: block;
+        width: 100%;
+        max-width: 300px;
+        margin: 10px auto;
+        text-align: center;
+    }
+
+    .portfolio .portfolio-item,
+    .service .service-item,
+    .contact .contact-form .col-6 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .service .service-item .service-item-inner {
+        min-height: 250px;
+    }
+
+    .portfolio .portfolio-item-inner {
+        min-height: 250px;
+    }
+}
+
+@media (max-width: 460px) {
+    .contact .contact-info-item {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .home .home-img img {
+        max-width: 90%;
+    }
 }
