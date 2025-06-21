@@ -1,6 +1,20 @@
-# Fares Ahmed - Personal Portfolio
+<h1 align="center">PORTOFOLIO</h1>
 
-Welcome to my personal portfolio! This is a showcase of my work, skills, and experience as a Web Developer. Feel free to explore the different sections to know more about me and my work.
+<p align="center"><em>Showcase Your Brilliance with a Stunning Digital Presence</em></p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/last%20commit-april-blue" />
+  <img src="https://img.shields.io/badge/html-45.4%25-blue" />
+  <img src="https://img.shields.io/badge/languages-3-blue" />
+</p>
+
+<p align="center"><em>Built with the tools and technologies:</em></p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Markdown-000000?logo=markdown&logoColor=white" />
+  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=000" />
+</p>
+
 
 ## Features
 
